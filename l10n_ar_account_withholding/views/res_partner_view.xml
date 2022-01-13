@@ -13,6 +13,8 @@
                 <field name="drei"/>
             </group>
             <group name="others" position="after">
+                <button type="object" icon="fa-file-o" string="Actualizar Arba" name="update_get_arba_data"/>
+                <br/>
                 <label for="arba_alicuot_ids"/>
                 <field name="arba_alicuot_ids"/>
             </group>
