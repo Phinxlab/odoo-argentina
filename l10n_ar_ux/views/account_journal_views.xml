@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
 
             <field name="l10n_latam_use_documents" position="after">
+                <field name="discriminate_taxes" attrs="{'invisible':['|', '|', ('country_code', '!=', 'AR'), ('l10n_latam_use_documents', '=', True), ('type', '!=', 'sale')]}"/>
                 <field name="l10n_ar_is_pos" attrs="{'invisible':['|', '|', ('country_code', '!=', 'AR'), ('l10n_latam_use_documents', '=', False), ('type', 'not in', ['sale', 'purchase'])]}"/>
             </field>
 
@@ -26,7 +27,7 @@
                 <attribute name="attrs">{'invisible':[('l10n_ar_is_pos', '=', False)], 'required':[('l10n_ar_is_pos', '=', True)]}</attribute>
             </field>
             <field name="l10n_ar_afip_pos_partner_id" position="attributes">
-                <attribute name="attrs">{'invisible':[('l10n_ar_is_pos', '=', False)], 'required':[('l10n_ar_is_pos', '=', True)]}</attribute>
+                <attribute name="attrs">{'invisible':['|', ('country_code', '!=', 'AR'), ('type', 'not in', ['sale', 'purchase'])], 'required':[('l10n_ar_is_pos', '=', True)]}</attribute>
             </field>
             <xpath expr="//page[@name='advanced_settings']/group" position="after">
                 <group string="QR-Code" attrs="{'invisible': ['|', '|', ('country_code', '!=', 'AR'), ('type', '!=', 'sale'), ('l10n_latam_use_documents', '=', False)]}">
