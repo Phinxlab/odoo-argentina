@@ -39,11 +39,11 @@
 
             <group name="others_col_1" position="inside">
                 <label for="l10n_ar_gross_income_number" position="move"/>
-<!--                <div name="gross_income" position="move"/>-->
+                <div name="gross_income" position="move"/>
             </group>
-<!--            <div name="gross_income" position="inside">-->
-<!--                <field name="gross_income_jurisdiction_ids" widget="many2many_tags" placeholder="Other Jurisdictions" class="oe_inline" attrs="{'invisible': [('l10n_ar_gross_income_type', '!=', 'multilateral')]}"/>-->
-<!--            </div>-->
+            <div name="gross_income" position="inside">
+                <field name="gross_income_jurisdiction_ids" widget="many2many_tags" placeholder="Other Jurisdictions" class="oe_inline" attrs="{'invisible': [('l10n_ar_gross_income_type', '!=', 'multilateral')]}"/>
+            </div>
 
         </field>
     </record>
