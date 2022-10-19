@@ -3,7 +3,7 @@ from odoo import models, fields, api, _
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 try:
-    from pyafipws3.iibb import IIBB
+    from pyafipws.iibb import IIBB
 except ImportError:
     IIBB = None
 # from pyafipws.padron import PadronAFIP

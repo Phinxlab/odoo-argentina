@@ -28,38 +28,6 @@ class ResPartner(models.Model):
         'Regimen Ganancias por Defecto',
     )
 
-    def update_get_arba_data(self):
-        for partner in self:
-            commercial_partner = self.commercial_partner_id
-            arba_tag = self.env.ref('l10n_ar_ux.tag_tax_jurisdiccion_902')
-            date = fields.Datetime.now()
-            from_date = date + relativedelta(day=1)
-            to_date = date + relativedelta(day=1, days=-1, months=+1)
-            if partner.company_id and partner.company_id.arba_cit:
-                company_ids = partner.company_id
-            else:
-                company_ids = self.env.companies.filtered(lambda x: x.arba_cit)
-            for company in company_ids:
-                arba_data = company.get_arba_data(
-                    commercial_partner,
-                    from_date, to_date,
-                )
-                if not arba_data['numero_comprobante']:
-                    arba_data['numero_comprobante'] = \
-                        'Alícuota no inscripto'
-                    arba_data['alicuota_retencion'] = \
-                        company.arba_alicuota_no_sincripto_retencion
-                    arba_data['alicuota_percepcion'] = \
-                        company.arba_alicuota_no_sincripto_percepcion
-
-                arba_data['partner_id'] = commercial_partner.id
-                arba_data['company_id'] = company.id
-                arba_data['tag_id'] = arba_tag.id
-                arba_data['from_date'] = from_date
-                arba_data['to_date'] = to_date
-                partner.arba_alicuot_ids.sudo().create(arba_data)
-
-
 
 class ResPartnerArbaAlicuot(models.Model):
     # TODO rename model to res.partner.tax or similar
